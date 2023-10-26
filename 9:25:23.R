@@ -1,0 +1,12 @@
+library(MASS)
+library(dplyr)
+ls(Cars93)
+show(Cars93)
+head(Cars93)
+sel <- select(Cars93, Type, MPG.city)
+head(sel)
+Ex2 <- select(filter(Cars93, Type=="Small"), MPG.city, Model)
+head(Ex2)
+Ex3 <- select(filter(Cars93, Type %in% c("Midsize","Small") & Horsepower>=120), Type, EngineSize, Cylinders)
+head(Ex3)
+## Ex4 <- Cars93 %>% ## pipe --> pipe end %>%
