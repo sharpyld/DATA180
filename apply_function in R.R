@@ -8,6 +8,8 @@ apply(Test,1,mean)
 
 apply(Test,2,mean)
 
+apply(Test, c(1,2), mean)
+
 apply(Test,2,sd)
 
 apply(Test,2,sum)
@@ -26,6 +28,9 @@ Data_M
 apply(Data_M,2,mean)
 Data_M_scaled<-scale(Data_M)
 Data_M_scaled
+
+install.packages("planets")
+library(planets)
 
 
 apply(Data_M,2,sd)
