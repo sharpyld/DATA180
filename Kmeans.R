@@ -1,4 +1,4 @@
-Cluster_Ex<-read.csv("") # The path to your data goes here. 
+Cluster_Ex<-read.csv("/Users/dsharpylo/Documents/RStudio/DATA180_Dickinson/DATA180/Cluster_Ex[60].csv") # The path to your data goes here. 
 head(Cluster_Ex)
 
 
@@ -14,6 +14,7 @@ Kmeans_3$withinss
 
 #Clusters. 
 Kmeans_3$cluster
+as.data.frame(Kmeans_3$cluster)
 
 # Plotting clusters. 
 plot(X2~X1,data=Cluster_Ex,xlim=c(0,4),ylim=c(0,4),cex.axis=1.3, cex.lab=1.2,cex=1.2,pch=15+Kmeans_3$cluster,col=Kmeans_3$cluster)
