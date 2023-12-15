@@ -1,0 +1,77 @@
+---
+title: "Data 180 Final Exam"
+author: 
+  name: "Denys Sharpylo"
+  email: "sharpyld@dickinson.edu"
+output: html_document
+date: "`r Sys.Date()`"
+---
+# Questions that require written answers are answered in the Word document attached in the same pull request. 
+
+
+```{r echo=FALSE}
+# Custom options for knitting
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  error = FALSE, 
+  fig.align = "center",
+  cache = FALSE
+) 
+```
+
+
+
+```{r}
+# Problem 1 - Data Wrangling
+setwd("/Users/dsharpylo/Documents/RStudio/DATA180_Dickinson/DATA180/data")
+library(tm)
+loans <- read.csv("loan_default_data_set.csv")
+print(nrow(loans))
+print(ncol(loans))
+colnames(loans)
+names(which(colSums(is.na(loans)) > 0))
+library(tidyr)
+loans1 <- na.omit(loans)
+nrow(loans1)
+ncol(loans1)
+
+```
+
+
+```{r}
+# Problem 2 - Data summary statistics
+library(dplyr)
+sumloans <-summary(loans1)
+sumloans # a general summary of all of the variables
+
+
+loans1 %>% summarise(mean= mean(num_card_inq_24_month),median= median(num_card_inq_24_month), n=which.max(tabulate(num_card_inq_24_month)))
+hist(loans1$num_card_inq_24_month, cex.lab=1, cex.axis=1.2, col = "lightgray", xlab = "Card Inquiries # over 24 month")
+box()
+
+
+loans1 %>% summarise(mean= mean(tot_amount_currently_past_due), median= median(tot_amount_currently_past_due), n=which.max(tabulate(tot_amount_currently_past_due)))
+hist(loans1$tot_amount_currently_past_due, cex.lab=1, cex.axis=1.2, col = "lightgray", xlab = "Total amount past due")
+box()
+
+
+loans1 %>% summarise(mean= mean(credit_age), median(credit_age), n=which.max(tabulate(credit_age))) #need work on modes
+hist(loans1$credit_age, cex.lab=1, cex.axis=1.2, col = "lightgray", xlab = "Credit age")
+box()
+
+```
+
+
+```{r}
+# Problem 3 - Data Visualization
+library(ggplot2)
+ggplot(loans1, aes(Def_ind, fill= factor(Def_ind))) + geom_bar(position = "dodge", width = 0.5) + labs(title = "Default Indicator")
+
+ggplot(loans1, aes(rep_education, fill= factor(rep_education))) + geom_bar(position = "dodge", width = 0.5) + labs(title = "Reported Education")
+
+ggplot(loans1, aes(rep_income)) + geom_histogram(fill= "orange", color= "maroon")+ scale_x_continuous(breaks= seq(0,300000, by= 50000)) + labs(title = "Reported Income")
+ggplot(loans1, aes(tot_balance))+ geom_boxplot(fill= "lightblue", color= "blue", outlier.colour = "red", outlier.alpha = 1.5) + labs(title = "Total Balance")
+summary(loans1$tot_balance)
+```
+
