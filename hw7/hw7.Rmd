@@ -10,7 +10,7 @@ output:
 editor_options: 
   chunk_output_type: console
 ---
-
+20/20. Good Job Denys. 
 **Due date:** December 4 beginning of class.
 
 
@@ -31,7 +31,7 @@ In this homework, we will analyze news headlines data scraped from abcnews, post
 Read the `news.csv` into R and create the object `news` using
 
 ```{r}
-setwd("/Users/dsharpylo/Documents/RStudio/DATA180_Dickinson/DATA180/hw7")
+#setwd("/Users/dsharpylo/Documents/RStudio/DATA180_Dickinson/DATA180/hw7")
 library(tidyverse)
 library(tm)
 news<-read.csv("news.csv",header=T)
